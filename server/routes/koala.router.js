@@ -24,19 +24,17 @@ koalaRouter.post("/", (req, res) => {
   console.log(`Adding koala`, newKoala);
 
   let queryText = `INSERT INTO "koalla" 
-    ("Name", "Age", "Gender", "Ready for Transfer", "Notes", "Mark Ready", "Remove")
+    ("Name", "Age", "Gender", "Ready for Transfer", "Notes")
     VALUES
-    ($1, $2, $3, $4, $5, $6, $7);`; //REMEMBER TO COME BACK SDF
+    ($1, $2, $3, $4, $5);`; //REMEMBER TO COME BACK SDF
 
   pool
     .query(queryText, [
       newKoala.name,
       newKoala.age,
       newKoala.gender,
-      newKoala.readyfortransfer,
+      newKoala.readyForTransfer,
       newKoala.notes,
-      newKoala.markready,
-      newKoala.remove,
     ])
     .then((result) => {
       res.sendStatus(201);
